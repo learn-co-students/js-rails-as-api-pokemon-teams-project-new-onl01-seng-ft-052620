@@ -10,7 +10,7 @@ class TrainersController < ApplicationController
         renderJson
     end
 
-    def addPokemon 
+    def addPokemon
         set_trainer
         if trainer.pokemons.length < 6 
             trainer.pokemons << randomPoke
