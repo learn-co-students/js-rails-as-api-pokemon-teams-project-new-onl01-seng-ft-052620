@@ -1,7 +1,7 @@
 class PokemonsController < ApplicationController
     def show 
         set_pokemon
-        render json: pokemon, include: [:trainer]
+        render json: @pokemon, include: [:trainer]
     end 
 
     def randomPokemon()
@@ -12,14 +12,14 @@ class PokemonsController < ApplicationController
 
     def destroy 
         set_pokemon
-        trainer = pokemon.trainer 
-        pokemon.destroy 
+        trainer = @pokemon.trainer 
+        @pokemon.destroy 
         render json: trainer, include: [:pokemons]
     end
     
     private
 
     def set_pokemon
-        pokemon = Pokemon.find_by_id(params[:id])
+        @pokemon = Pokemon.find_by_id(params[:id])
     end
 end

@@ -8,16 +8,16 @@ class TrainersController < ApplicationController
 
     def show 
         set_trainer
-        render json: trainers, include: [:pokemons]
+        render json: @trainer, include: [:pokemons]
 
     end
 
     def addPokemon
         set_trainer
-        if trainer.pokemons.length < 6 
-            trainer.pokemons << randomPoke
+        if @trainer.pokemons.length < 6 
+            @trainer.pokemons << randomPoke
         end
-        render json: trainers, include: [:pokemons]
+        render json: @trainer, include: [:pokemons]
 
     end
 
@@ -25,7 +25,7 @@ class TrainersController < ApplicationController
     private 
 
     def set_trainer
-        trainer = Trainer.find_by_id(params[:id])
+        @trainer = Trainer.find_by_id(params[:id])
     end
 
     def randomPoke()

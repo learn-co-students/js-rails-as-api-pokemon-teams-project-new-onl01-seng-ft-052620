@@ -48,7 +48,7 @@ function trainerPokeLi(trainer, ul) {
         releaseBtn.setAttribute("data-pokemon-id", pokemon.id);
         releaseBtn.innerText = "Release"
         releaseBtn.addEventListener('click', ()=>{
-            debugger
+            console.log(releaseBtn.getAttribute("data-pokemon-id"))
             releasePokemon(releaseBtn.getAttribute("data-pokemon-id"))
         })
         li.appendChild(releaseBtn)
@@ -58,6 +58,7 @@ function trainerPokeLi(trainer, ul) {
 
 function releasePokemon(id){
     let pokeId = `${POKEMONS_URL}/${id}`
+    console.log(pokeId)
     fetch(pokeId, {
         method: "DELETE",
         headers:{
@@ -71,7 +72,7 @@ function releasePokemon(id){
     .then(function(object){
         let card = document.getElementById(object.id)
         let ul = card.querySelector('ul')
-        listTrainersPokemon(object, ul)
+        trainerPokeLi(object, ul)
     })
     .catch(function(error){
         alert("Error Occurred");
@@ -82,20 +83,20 @@ function releasePokemon(id){
 function addPokemon(trainerCard){
     let id = trainerCard.getAttribute('data-id')
     let trainersId = `${TRAINERS_URL}/${id}`
-        fetch(trainersId, {
+        fetch(trainersId,{
             method: "POST", 
             headers: {
                 "Content-Type": "application/json",
         "Accept": "application/json"
             }
         })
-        .then(function(resp) {
+        .then(function(resp){
            return resp.json(); 
         })
         .then(function(object){
             let card = document.getElementById(object.id)
             let ul = card.querySelector('ul')
-            listTrainersPokemon(object, ul)
+            trainerPokeLi(object, ul)
         })
         .catch(function(error){
             alert("Error Occurred");
