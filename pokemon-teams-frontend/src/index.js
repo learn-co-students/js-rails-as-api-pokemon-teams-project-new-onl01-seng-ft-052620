@@ -4,6 +4,10 @@ const POKEMONS_URL = `${BASE_URL}/pokemons`
 
 const main = document.querySelector('main')
 
+document.addEventListener('DOMContentLoaded', (e) => {
+    fetchTrainers()
+})
+
 function fetchTrainers() {
     fetch(TRAINERS_URL)
     .then(resp => resp.json())
@@ -44,6 +48,7 @@ function trainerPokeLi(trainer, ul) {
         releaseBtn.setAttribute("data-pokemon-id", pokemon.id);
         releaseBtn.innerText = "Release"
         releaseBtn.addEventListener('click', ()=>{
+            debugger
             releasePokemon(releaseBtn.getAttribute("data-pokemon-id"))
         })
         li.appendChild(releaseBtn)
