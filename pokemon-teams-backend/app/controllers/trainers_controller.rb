@@ -2,12 +2,14 @@ class TrainersController < ApplicationController
 
     def index 
         trainers = Trainer.all
-        renderJson
+        render json: trainers, include: [:pokemons]
+
     end
 
     def show 
         set_trainer
-        renderJson
+        render json: trainers, include: [:pokemons]
+
     end
 
     def addPokemon
@@ -15,15 +17,12 @@ class TrainersController < ApplicationController
         if trainer.pokemons.length < 6 
             trainer.pokemons << randomPoke
         end
-        renderJson
+        render json: trainers, include: [:pokemons]
+
     end
 
 
     private 
-
-    def renderJson 
-        render json: trainers, include: [:pokemons]
-    end
 
     def set_trainer
         trainer = Trainer.find_by_id(params[:id])
