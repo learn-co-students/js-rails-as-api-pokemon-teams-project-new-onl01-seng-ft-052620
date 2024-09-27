@@ -24,17 +24,17 @@ body {
   }
   
   div.card {
-    background-color: #eeeeee;
+    background-color: yellow;
     height: 250px;
     width: 300px;
-    box-shadow: 10px 10px grey;
+    box-shadow: 10px 10px darkslateblue;
     padding: 10px;
     border-radius: 10px;
   }
   
   p {
     font-size: 1.5em;
-    color: black;
+    color:deeppink;
     font-family: Helvetica;
   }
   
